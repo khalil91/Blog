@@ -1,0 +1,26 @@
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+
+#--------------------------------------------------
+# Règles de réécriture d'URL :
+#--------------------------------------------------
+
+# Article sans numéro de page :
+RewriteRule ^posts   index.php?action=posts [L]
+RewriteRule ^post-([0-9]+)   index.php?action=post&id=$1 [L]
+RewriteRule ^delete-post-([0-9]+)   index.php?action=delete-post&id=$1 [L]
+RewriteRule ^delete-comment-([0-9]+)   index.php?action=delete-comment&id=$1 [L]
+RewriteRule ^validate-comment-([0-9]+)   index.php?action=validate-comment&id=$1 [L]
+RewriteRule ^dashboard   index.php?action=dashboard [L]
+RewriteRule ^logout index.php?action=logout [L]
+RewriteRule ^sign-in  index.php?action=sign-in [L]
+RewriteRule ^register  index.php?action=register [L]
+
+
+
+
+
