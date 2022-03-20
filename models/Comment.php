@@ -2,7 +2,7 @@
 require_once 'inc/functions.php';
 require_once 'inc/database.php';
 
-class comment
+class Comment
 {
 
     public $id_comment;

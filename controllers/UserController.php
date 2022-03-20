@@ -1,6 +1,6 @@
 <?php
 require_once 'models/User.php';
-require_once 'models/post_user.php';
+require_once 'models/PostUser.php';
 
 
 function signInUser()
@@ -8,7 +8,7 @@ function signInUser()
     $message = null;
     if (isset($_POST['username'])) {
         $message = signIn(htmlspecialchars($_POST['username']), $_POST['password']);
-        if ($message == null) {
+        if ($message === null) {
             if ($_SESSION['user']->role == 'admin')
                 header("Location: dashboard");
             else

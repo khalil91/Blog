@@ -1,7 +1,7 @@
 <?php
 require_once 'models/Comment.php';
 require_once 'models/Post.php';
-require_once 'models/comment_utilisateur.php';
+require_once 'models/CommentUtilisateur.php';
 
 function listPosts()
 {

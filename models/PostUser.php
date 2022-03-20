@@ -2,7 +2,7 @@
 require_once 'inc/functions.php';
 require_once 'inc/database.php';
 
-class post_user
+class PostUser
 {
 
     public $id_post;
@@ -27,6 +27,6 @@ function getPostsAdmin()
     $conn = $db->getConnection();
     $query = $conn->prepare('select * from posts, utilisateur where id_user=id order by date_creation desc;');
     $query->execute();
-    return $query->fetchAll(PDO::FETCH_CLASS, 'post_user');
+    return $query->fetchAll(PDO::FETCH_CLASS, 'PostUser');
 
 }

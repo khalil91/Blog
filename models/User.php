@@ -24,7 +24,7 @@ function signIn($username, $password)
     $query->execute();
     $user = $query->fetchObject('user');
 
-    if ($user != null)
+    if ($user !== null)
         if (password_verify($password, $user->password)) {
             $_SESSION['user'] = $user;
             return null;
@@ -43,7 +43,7 @@ function registerUser($nom, $prenom, $email, $password)
     $query = $conn->prepare("SELECT * FROM utilisateur WHERE email='$mail'");
     $query->execute();
     $user = $query->fetchObject('user');
-    if ($user != null)
+    if ($user !== null)
         return "<p class='text-gray-600'>Il semble que vous avez un compte! merci de de <a href='sign-in' class='font-bold'>Se connecter</a>.</p>";
 
     $password = htmlspecialchars($password);

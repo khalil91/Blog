@@ -163,7 +163,7 @@
                         <td>
 
 
-                            <?php if ($comment->validated == false) { ?>
+                            <?php if ($comment->validated === false) { ?>
                                 <a class="btn btn-sm btn-primary"
                                    href="validate-comment-<?php echo $comment->id_comment ?>"><i
                                             class="far fa-edit"></i> Valider</a>
