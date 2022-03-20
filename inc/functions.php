@@ -1,20 +1,5 @@
 <?php
 
-/**
- * Redirect user with a session based flash message
- * @param string $message
- * @param string $type
- * @param string $name
- * @param string $location
- * @return void
- */
-function redirect_with_message(string $message, string $type = FLASH_ERROR, string $name = 'upload', string $location = 'index.php'): void
-{
-    flash($name, $message, $type);
-    header("Location: $location", true, 303);
-    exit;
-}
-
 function guid($data = null)
 {
     // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
