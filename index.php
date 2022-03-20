@@ -1,50 +1,54 @@
 <?php
 session_start();
 
-require 'controllers/UserController.php';
-require 'controllers/PostController.php';
-require 'controllers/HomeController.php';
-require 'controllers/CommentController.php';
+require_once 'controllers/UserController.php';
+require_once 'controllers/PostController.php';
+require_once 'controllers/HomeController.php';
+require_once 'controllers/CommentController.php';
+
+$userController = new UserController();
+$postController = new PostController();
+$homeController = new HomeController();
+$commentController = new CommentController();
 
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'posts') {
-        listPosts();
+        $postController->listPosts();
     } else if ($_GET['action'] == 'sign-in') {
-        signInUser();
-
+        $userController->signInUser();
     } else if ($_GET['action'] == 'dashboard') {
-        dashboard();
+        $homeController->dashboard();
     } else if ($_GET['action'] == 'register') {
-        register();
+        $userController->register();
     } else if ($_GET['action'] == 'logout') {
-        logout();
+        $userController->logout();
     } elseif ($_GET['action'] == 'post') {
 
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            post();
+            $postController->post();
         } else {
-            home();
+            $userController->home();
         }
     } elseif ($_GET['action'] == 'delete-post') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            deletePostAction();
+            $postController->deletePostAction();
         } else {
-            home();
+            $userController->home();
         }
     } elseif ($_GET['action'] == 'delete-comment') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            deleteCommentAction();
+            $commentController->deleteCommentAction();
         } else {
-            home();
+            $userController->home();
         }
     } elseif ($_GET['action'] == 'validate-comment') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            validateCommentAction();
+            $commentController->validateCommentAction();
         } else {
-            home();
+            $userController->home();
         }
     }
 } else {
-    home();
+    $userController->home();
 }

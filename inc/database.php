@@ -7,9 +7,15 @@ const DB_NAME = 'blog';
 
 class DbConnection
 {
-    function getConnection()
+    private $connection;
+
+    public function __construct()
     {
-        // Connexion à la base de données MySQL
-        return new PDO('mysql:host=' . DB_SERVER . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
+        $this->connection = new PDO('mysql:host=' . DB_SERVER . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
     }
 }
