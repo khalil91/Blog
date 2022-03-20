@@ -1,0 +1,5 @@
+.table td.comment {
+    overflow-wrap: break-word !important;
+    white-space: break-spaces;
+    max-width: 70px;
+}
