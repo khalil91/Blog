@@ -1,12 +1,16 @@
 <?php
-require_once 'models/User.php';
-require_once 'models/PostUser.php';
+require_once 'models/UserService.php';
 
 class UserController
 {
 
+    private $userService;
+    private $homeController;
+
     public function __construct()
     {
+        $this->userService = new UserService();
+        $this->homeController = new HomeController();
     }
 
     function logout()
@@ -19,12 +23,12 @@ class UserController
     {
         $message = null;
         if (isset($_POST['username'])) {
-            $message = signIn(htmlspecialchars($_POST['username']), $_POST['password']);
+            $message = $this->userService->signIn(htmlspecialchars($_POST['username']), $_POST['password']);
             if ($message === null) {
                 if ($_SESSION['user']->role == 'admin')
                     header("Location: dashboard");
                 else
-                    home();
+                    $this->homeController->home();
                 return;
             }
         }
@@ -35,7 +39,7 @@ class UserController
     {
         $message = "";
         if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['password'])) {
-            $message = registerUser($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['password']);
+            $message = $this->userService->registerUser($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['password']);
         }
         require('views/register.php');
     }

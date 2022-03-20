@@ -28,27 +28,27 @@ if (isset($_GET['action'])) {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             $postController->post();
         } else {
-            $userController->home();
+            $homeController->home();
         }
     } elseif ($_GET['action'] == 'delete-post') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             $postController->deletePostAction();
         } else {
-            $userController->home();
+            $homeController->home();
         }
     } elseif ($_GET['action'] == 'delete-comment') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             $commentController->deleteCommentAction();
         } else {
-            $userController->home();
+            $homeController->home();
         }
     } elseif ($_GET['action'] == 'validate-comment') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             $commentController->validateCommentAction();
         } else {
-            $userController->home();
+            $homeController->home();
         }
     }
 } else {
-    $userController->home();
+    $homeController->home();
 }

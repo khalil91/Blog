@@ -1,8 +1,16 @@
 <?php
-require_once 'models/Comment.php';
+require_once 'models/CommentService.php';
 
 class CommentController
 {
+
+    private $service;
+
+    public function __construct()
+    {
+        $this->service = new CommentService();
+    }
+
     function deleteCommentAction()
     {
         if (!isset($_SESSION['user'])) {
@@ -10,7 +18,7 @@ class CommentController
             return;
         }
 
-        deleteComment($_GET['id']);
+        $this->service->deleteComment($_GET['id']);
         header("Location: dashboard");
 
     }
@@ -22,7 +30,7 @@ class CommentController
             return;
         }
 
-        validateComment($_GET['id']);
+        $this->service->validateComment($_GET['id']);
         header("Location: dashboard");
 
     }

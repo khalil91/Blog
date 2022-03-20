@@ -1,12 +1,21 @@
 <?php
-require_once 'models/User.php';
-require_once 'models/PostUser.php';
+require_once 'models/UserService.php';
 
 class HomeController
 {
+
+    private $postService;
+    private $commentService;
+
+    public function __construct()
+    {
+        $this->postService = new PostService();
+        $this->commentService = new CommentService();
+    }
+
     function home()
     {
-        $posts = getLatestsPosts();
+        $posts = $this->postService->getLatestsPosts();
         require('views/home.php');
     }
 
@@ -21,13 +30,13 @@ class HomeController
             header("Location: /");
         }
         if (isset($_POST['update_id']) && !empty($_POST['titre']) && !empty($_POST['description'])) {
-            updatePost($_POST['update_id'], $_POST['titre'], $_POST['description'], $_FILES['file']);
+            $this->postService->updatePost($_POST['update_id'], $_POST['titre'], $_POST['description'], $_FILES['file']);
         } else if (!empty($_POST['titre']) && !empty($_POST['description']) && isset($_FILES['file'])) {
-            addpost($_POST['titre'], $_POST['description'], $_FILES['file']);
+            $this->postService->addpost($_POST['titre'], $_POST['description'], $_FILES['file']);
         }
 
-        $posts = getPostsAdmin();
-        $comments = getCommentsAdmin();
+        $posts = $this->postService->getPostsAdmin();
+        $comments = $this->commentService->getCommentsAdmin();
 
 
         require('views/dashboard.php');

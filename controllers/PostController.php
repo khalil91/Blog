@@ -1,18 +1,26 @@
 <?php
-require_once 'models/Comment.php';
-require_once 'models/Post.php';
-require_once 'models/CommentUtilisateur.php';
+require_once 'models/CommentService.php';
+require_once 'models/PostService.php';
 
 
 class PostController
 {
+
+    private $postService;
+    private $commentService;
+
+    public function __construct()
+    {
+        $this->postService = new PostService();
+        $this->commentService = new CommentService();
+    }
 
     function listPosts()
     {
         if (!isset($_SESSION['user']))
             header("Location: sign-in");
 
-        $posts = getPosts();
+        $posts = $this->postService->getPosts();
         require('views/posts.php');
     }
 
@@ -25,10 +33,10 @@ class PostController
         }
         $id = htmlspecialchars($_GET['id']);
         if (isset($_POST['comment'])) {
-            addComments($id, htmlspecialchars($_POST['comment']));
+            $this->commentService->addComments($id, htmlspecialchars($_POST['comment']));
         }
-        $post = getPost($id);
-        $comments = getComments($id);
+        $post = $this->postService->getPost($id);
+        $comments = $this->commentService->getComments($id);
 
         require('views/post.php');
     }
@@ -40,7 +48,7 @@ class PostController
             return;
         }
 
-        deletePost($_GET['id']);
+        $this->postService->deletePost($_GET['id']);
         header("Location: dashboard");
 
     }
