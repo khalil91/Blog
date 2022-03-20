@@ -1,5 +1,4 @@
 <?php
-require_once 'inc/functions.php';
 require_once 'inc/database.php';
 
 class CommentUtilisateur
