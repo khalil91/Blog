@@ -18,9 +18,6 @@ function signIn($username, $password)
 {
     $db = new DbConnection();
     $conn = $db->getConnection();
-    $message = null;
-
-    // if (isset($_POST['username'], $_POST['password'])) {
     $mail = htmlspecialchars($username);
     $password = stripslashes($password);
     $query = $conn->prepare("SELECT * FROM utilisateur WHERE email='$mail'");
@@ -30,15 +27,10 @@ function signIn($username, $password)
     if ($user != null)
         if (password_verify($password, $user->password)) {
             $_SESSION['user'] = $user;
-        } else {
-            $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+            return null;
         }
 
-    else {
-        $message = "Le nom d'utilisateur est introuvable, merci de s'inscrire.";
-    }
-
-    return $message;
+    return "Le nom d'utilisateur est introuvable, merci de s'inscrire.";
 }
 
 function registerUser($nom, $prenom, $email, $password)

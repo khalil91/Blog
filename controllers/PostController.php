@@ -19,16 +19,15 @@ function post()
         require('views/sign-in.php');
         return;
     }
-
+    $id = htmlspecialchars($_GET['id']);
     if (isset($_POST['comment'])) {
-        addComments($_GET['id'], $_POST['comment']);
+        addComments($id, htmlspecialchars($_POST['comment']));
     }
-    $post = getPost($_GET['id']);
-    $comments = getComments($_GET['id']);
+    $post = getPost($id);
+    $comments = getComments($id);
 
     require('views/post.php');
 }
-
 
 function deletePostAction()
 {

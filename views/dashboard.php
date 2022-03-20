@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/material-kit.css?v=3.0.0" rel="stylesheet"/>
+    <link id="pagestyle" href="assets/css/custom.css" rel="stylesheet"/>
 </head>
 
 <body class="blog-author bg-gray-200">
@@ -35,8 +36,6 @@
 </header>
 <!---->
 <main
-
-
 <div class="container my-3">
 
 
@@ -130,12 +129,9 @@
     </div>
 
 </div>
-</main>
-
 
 <!-- afficher les commentaires -->
 
-<main>
     <div class="container my-5">
         <div class="card-body text-center">
             <h4 class="card-title">liste des commentaires </h4>
@@ -161,7 +157,7 @@
                         <td><?php echo $comment->date_creation ?></td>
                         <td><?php echo $comment->nom ?></td>
                         <td><?php echo $comment->titre ?></td>
-                        <td><?php echo $comment->comment ?> </td>
+                        <td class="comment"><?php echo $comment->comment ?> </td>
                         <td><i class="fa <?php echo $comment->validated ? 'fa-check' : 'fa-ban' ?>"></i></td>
 
                         <td>

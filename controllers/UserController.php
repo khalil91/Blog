@@ -7,7 +7,7 @@ function signInUser()
 {
     $message = null;
     if (isset($_POST['username'])) {
-        $message = signIn($_POST['username'], $_POST['password']);
+        $message = signIn(htmlspecialchars($_POST['username']), $_POST['password']);
         if ($message == null) {
             if ($_SESSION['user']->role == 'admin')
                 header("Location: dashboard");
@@ -28,8 +28,8 @@ function logout()
 function register()
 {
     $message = "";
-    if (isset($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['email'], $_REQUEST['password'])) {
-        $message = registerUser($_REQUEST['nom'], $_REQUEST['prenom'], $_REQUEST['email'], $_REQUEST['password']);
+    if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['password'])) {
+        $message = registerUser($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['password']);
     }
     require('views/register.php');
 }
