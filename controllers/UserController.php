@@ -13,13 +13,13 @@ class UserController
         $this->homeController = new HomeController();
     }
 
-    function logout()
+    public function logout()
     {
         session_destroy();
         header("Location: sign-in");
     }
 
-    function signInUser()
+    public function signInUser()
     {
         $message = null;
         if (isset($_POST['username'])) {
@@ -35,7 +35,7 @@ class UserController
         require('views/sign-in.php');
     }
 
-    function register()
+    public function register()
     {
         $message = "";
         if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['password'])) {

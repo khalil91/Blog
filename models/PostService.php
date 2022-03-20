@@ -15,7 +15,7 @@ class PostService
         $this->conn = $db->getConnection();
     }
 
-    function deletePost($id)
+    public function deletePost($id)
     {
 
         /***  DELETE POST  ***/
@@ -23,7 +23,7 @@ class PostService
 
     }
 
-    function getPosts()
+    public function getPosts()
     {
 
         $query = $this->conn->prepare('select  * from posts order by date_creation desc ;');
@@ -31,7 +31,7 @@ class PostService
         return $query->fetchAll(PDO::FETCH_CLASS, 'post');
     }
 
-    function getLatestsPosts()
+    public function getLatestsPosts()
     {
 
         $query = $this->conn->prepare('select  * from posts order by date_creation desc limit 4;');
@@ -40,7 +40,7 @@ class PostService
 
     }
 
-    function getPost($id)
+    public function getPost($id)
     {
 
 
@@ -50,7 +50,7 @@ class PostService
         return $query->fetchObject('post');
     }
 
-    function addpost($titre, $description, $image)
+    public function addpost($titre, $description, $image)
     {
         $titre = htmlspecialchars($titre);
         $description = htmlspecialchars($description);
@@ -83,7 +83,7 @@ class PostService
 
     }
 
-    function updatePost($id, $titre, $description, $image)
+    public function updatePost($id, $titre, $description, $image)
     {
         $titre = htmlspecialchars($titre);
         $description = htmlspecialchars($description);
@@ -109,7 +109,7 @@ class PostService
 
     }
 
-    function getPostsAdmin()
+    public function getPostsAdmin()
     {
 
         $query = $this->conn->prepare('select * from posts, utilisateur where id_user=id order by date_creation desc;');

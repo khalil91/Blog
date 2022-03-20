@@ -11,7 +11,7 @@ class CommentController
         $this->service = new CommentService();
     }
 
-    function deleteCommentAction()
+    public function deleteCommentAction()
     {
         if (!isset($_SESSION['user'])) {
             require('views/sign-in.php');
@@ -23,7 +23,7 @@ class CommentController
 
     }
 
-    function validateCommentAction()
+    public function validateCommentAction()
     {
         if (!isset($_SESSION['user'])) {
             require('views/sign-in.php');

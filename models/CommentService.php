@@ -15,7 +15,7 @@ class CommentService
         $this->conn = $db->getConnection();
     }
 
-    function getCommentsAdmin()
+    public function getCommentsAdmin()
     {
 
         /**  afficher les commentaires **/
@@ -24,7 +24,7 @@ class CommentService
         return $query->fetchAll(PDO::FETCH_CLASS, 'comment');
     }
 
-    function addComments($id, $comment)
+    public function addComments($id, $comment)
     {
         /***  PUT COMMENT  ***/
         $user = unserialize(serialize($_SESSION['user']));
@@ -34,22 +34,21 @@ class CommentService
         }
     }
 
-    function deleteComment($id)
+    public function deleteComment($id)
     {
         /***  DELETE COMMENT  ***/
         $this->conn->prepare('delete from comments where id_comment= ? ')->execute([$id]);
 
     }
 
-    function validateComment($id)
+    public function validateComment($id)
     {
         /***  DELETE COMMENT  ***/
         $this->conn->prepare('update comments set validated=true where id_comment= ? ')->execute([$id]);
 
     }
 
-
-    function getComments($id)
+    public function getComments($id)
     {
         /***  GET COMMENTS from POST  ***/
         $query = $this->conn->prepare('select nom, prenom, comment, date_creation from comments join utilisateur u on id_user = u.id where id_post =  ? and validated = true');

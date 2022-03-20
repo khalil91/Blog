@@ -14,7 +14,7 @@ class UserService
         $this->conn = $db->getConnection();
     }
 
-    function signIn($username, $password)
+    public function signIn($username, $password)
     {
         $mail = htmlspecialchars($username);
         $password = stripslashes($password);
@@ -31,7 +31,7 @@ class UserService
         return "Le nom d'utilisateur est introuvable, merci de s'inscrire.";
     }
 
-    function registerUser($nom, $prenom, $email, $password)
+    public function registerUser($nom, $prenom, $email, $password)
     {
 
         $nom = htmlspecialchars($nom);

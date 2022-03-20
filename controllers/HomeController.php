@@ -13,13 +13,13 @@ class HomeController
         $this->commentService = new CommentService();
     }
 
-    function home()
+    public function home()
     {
         $posts = $this->postService->getLatestsPosts();
         require('views/home.php');
     }
 
-    function dashboard()
+    public function dashboard()
     {
         if (!isset($_SESSION['user']))
             header("Location: sign-in");

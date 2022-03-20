@@ -15,7 +15,7 @@ class PostController
         $this->commentService = new CommentService();
     }
 
-    function listPosts()
+    public function listPosts()
     {
         if (!isset($_SESSION['user']))
             header("Location: sign-in");
@@ -24,7 +24,7 @@ class PostController
         require('views/posts.php');
     }
 
-    function post()
+    public function post()
     {
 
         if (!isset($_SESSION['user'])) {
@@ -41,7 +41,7 @@ class PostController
         require('views/post.php');
     }
 
-    function deletePostAction()
+    public function deletePostAction()
     {
         if (!isset($_SESSION['user'])) {
             require('views/sign-in.php');
