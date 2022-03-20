@@ -5,29 +5,6 @@ if (isset($_POST['email'])) {
     $email_to = "oukhalil@hotmail.com";
     $email_subject = "Message reçu!";
 
-    function died($error)
-    {
-        // your error code can go here
-        echo
-            "Nous sommes désolés, mais des erreurs ont été détectées dans le" .
-            " formulaire que vous avez envoyé. ";
-        echo "Ces erreurs apparaissent ci-dessous.<br /><br />";
-        echo $error . "<br /><br />";
-        echo "Merci de corriger ces erreurs.<br /><br />";
-        die();
-    }
-
-
-    // si la validation des données attendues existe
-    if (!isset($_POST['nom']) ||
-        !isset($_POST['prenom']) ||
-        !isset($_POST['email']) ||
-        !isset($_POST['message'])) {
-        died(
-            'Nous sommes désolés, mais le formulaire que vous avez soumis semble poser' .
-            ' problème.');
-    }
-
 
     $nom = $_POST['nom']; // required
     $prenom = $_POST['prenom']; // required
